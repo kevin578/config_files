@@ -10,6 +10,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
+Plug 'styled-components/vim-styled-components'
 
 call plug#end()
 
