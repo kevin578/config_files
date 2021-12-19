@@ -11,13 +11,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'jesseleite/vim-agriculture'
-Plug 'wting/gitsessions.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-rails'
 Plug 'reedes/vim-pencil'
-Plug 'junegunn/vim-peekaboo'
 Plug 'mattn/emmet-vim'
-
+Plug 'junegunn/goyo.vim'
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -45,6 +44,10 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 "
+let g:indent_guides_enable_on_vim_startup = 1
+" use blinky line in insert mode
+au InsertEnter * silent execute "!echo -en \<esc>[5 q"
+au InsertLeave * silent execute "!echo -en \<esc>[2 q"
 
 " On pressing tab, insert 2 spaces
 set expandtab
@@ -148,3 +151,36 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" For Prose Mode - explaination: https://old.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
+
+let w:ProseModeOn = 0
+
+function EnableProseMode()
+    setlocal spell spelllang=en_us
+    Goyo 66
+    SoftPencil
+    echo "Prose Mode On"
+endfu
+
+function DisableProseMode()
+    Goyo!
+    NoPencil
+    setlocal nospell
+    echo "Prose Mode Off"
+endfu
+
+function ToggleProseMode()
+    if w:ProseModeOn == 0
+        call EnableProseMode()
+        let w:ProseModeOn = 1
+    else
+        call DisableProseMode()
+    endif
+endfu
+
+command Prose call EnableProseMode()
+command UnProse call DisableProseMode()
+command ToggleProse call ToggleProseMode()
+
+
