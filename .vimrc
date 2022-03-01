@@ -71,7 +71,7 @@ let mapleader=" " "set space bar as leader
 
 nnoremap <Leader>p :Files <CR>
 nnoremap <Leader>p :Files <CR>
-inoremap jk <esc>
+inoremap jk <esc>:w<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprevious<CR>
 nnoremap ]b :bnext<CR>
