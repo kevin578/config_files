@@ -11,6 +11,7 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
 export PATH=$PATH:"/Users/kevinbriggs/Documents/scripts/shell_scripts/new_branch"
 export PATH=$PATH:"/Users/kevinbriggs/Documents/scripts/shell_scripts/apache-maven-3.8.4/bin/"
+export HOMEBREW_NO_AUTO_UPDATE=1
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
